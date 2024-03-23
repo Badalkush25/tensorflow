@@ -87,13 +87,13 @@ def load_data():
   file3="/kaggle/input/audiofile/yes2.xlsx"
   file4="/kaggle/input/audiofile/yes3.xlsx"
   data=pd.read_excel(file1)
-  df_yes=df_yes.append(data)
+  df_yes=df_yes._append(data)
   data=pd.read_excel(file2)
-  df_yes=df_yes.append(data)
+  df_yes=df_yes._append(data)
   data=pd.read_excel(file3)
-  df_yes=df_yes.append(data)
+  df_yes=df_yes._append(data)
   data=pd.read_excel(file4)
-  df_yes=df_yes.append(data)
+  df_yes=df_yes._append(data)
   
   
   file1="/kaggle/input/audiofile/no.xlsx"
@@ -101,13 +101,13 @@ def load_data():
   file3="/kaggle/input/audiofile/no2.xlsx"
   file4="/kaggle/input/audiofile/no3.xlsx"
   data=pd.read_excel(file1)
-  df_no=df_no.append(data)
+  df_no=df_no._append(data)
   data=pd.read_excel(file2)
-  df_no=df_no.append(data)
+  df_no=df_no._append(data)
   data=pd.read_excel(file3)
-  df_no=df_no.append(data)
+  df_no=df_no._append(data)
   data=pd.read_excel(file4)
-  df_no=df_no.append(data)
+  df_no=df_no._append(data)
 
   file1="/kaggle/input/audiofile/un.xlsx"
   file2="/kaggle/input/audiofile/un1.xlsx"
@@ -115,22 +115,22 @@ def load_data():
   file4="/kaggle/input/audiofile/un3.xlsx"
   file5="/kaggle/input/audiofile/un4.xlsx"
   data=pd.read_excel(file1)
-  df_unknown=df_unknown.append(data)
+  df_unknown=df_unknown._append(data)
   data=pd.read_excel(file2)
-  df_unknown=df_unknown.append(data)
+  df_unknown=df_unknown._append(data)
   data=pd.read_excel(file3)
-  df_unknown=df_unknown.append(data)
+  df_unknown=df_unknown._append(data)
   data=pd.read_excel(file4)
-  df_unknown=df_unknown.append(data)
+  df_unknown=df_unknown._append(data)
   data=pd.read_excel(file5)
-  df_unknown=df_unknown.append(data)
+  df_unknown=df_unknown._append(data)
 
   file1="/kaggle/input/audiofile/silence.xlsx"
   data=pd.read_excel(file1)
-  df_silence=df_silence.append(data)
-  df_silence=df_silence.append(data)
-  df_silence=df_silence.append(data)
-  df_silence=df_silence.append(data)
+  df_silence=df_silence._append(data)
+  df_silence=df_silence._append(data)
+  df_silence=df_silence._append(data)
+  df_silence=df_silence._append(data)
   print("pulled_dataframes")
   return df_yes,df_no,df_unknown,df_silence
 
