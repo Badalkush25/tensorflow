@@ -77,104 +77,160 @@ import models
 from tensorflow.python.platform import gfile
 
 FLAGS = None
+def load_data():
+  df_yes=pd.DataFrame()
+  df_no=pd.DataFrame()
+  df_unknown=pd.DataFrame()
+  df_silence=pd.DataFrame()
+  file1="/kaggle/input/audiofile/yes.xlsx"
+  file2="/kaggle/input/audiofile/yes1.xlsx"
+  file3="/kaggle/input/audiofile/yes2.xlsx"
+  file4="/kaggle/input/audiofile/yes3.xlsx"
+  data=pd.read_excel(file1)
+  df_yes.append(data)
+  data=pd.read_excel(file2)
+  df_yes.append(data)
+  data=pd.read_excel(file3)
+  df_yes.append(data)
+  data=pd.read_excel(file4)
+  df_yes.append(data)
+  df_yes=pd.DataFrame()
+  
+  file1="/kaggle/input/audiofile/no.xlsx"
+  file2="/kaggle/input/audiofile/no1.xlsx"
+  file3="/kaggle/input/audiofile/no2.xlsx"
+  file4="/kaggle/input/audiofile/no3.xlsx"
+  data=pd.read_excel(file1)
+  df_no.append(data)
+  data=pd.read_excel(file2)
+  df_no.append(data)
+  data=pd.read_excel(file3)
+  df_no.append(data)
+  data=pd.read_excel(file4)
+  df_no.append(data)
 
-def return_data(training_step,start):
-  if training_step<=140:
-    excel_file = "/kaggle/input/audiofile/yes_n.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
-    yes_data = np.array(reader.iloc[:, 2:1962].values)
-    yes_label = np.full(25, 2)
-    excel_file = "/kaggle/input/audiofile/no.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
-    no_data = np.array(reader.iloc[:, 2:1962].values)
-    no_label =  np.full(25, 3)
-    excel_file = "/kaggle/input/audiofile/un.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
-    un_data = np.array(reader.iloc[:, 2:1962].values)
-    un_label =  np.full(25, 1)
-    excel_file = "/kaggle/input/audiofile/silence.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=0, nrows=25)
-    silence_data = np.array(reader.iloc[:, 2:1962].values)
-    silence_label =  np.full(25, 0)
-    out1=np.concatenate((yes_data,no_data))
-    out2=np.concatenate((un_data,silence_data))
-    fdata=np.concatenate((out1,out2))
-    out1=np.concatenate((yes_label,no_label))
-    out2=np.concatenate((un_label,silence_label))
-    flabel=np.concatenate((out1,out2))
-    return fdata, flabel
-  elif training_step<=740:
-    excel_file = "/kaggle/input/audiofile/yes1.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
-    yes_data = np.array(reader.iloc[:, 2:1962].values)
-    yes_label =  np.full(25, 2)
-    excel_file = "/kaggle/input/audiofile/no1.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
-    no_data = np.array(reader.iloc[:, 2:1962].values)
-    no_label = np.full(25, 3)
-    excel_file = "/kaggle/input/audiofile/un2.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
-    un_data = np.array(reader.iloc[:, 2:1962].values)
-    un_label =  np.full(25, 1)
-    excel_file = "/kaggle/input/audiofile/silence.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=0, nrows=25)
-    silence_data = np.array(reader.iloc[:, 2:1962].values)
-    silence_label = np.full(25, 0)
-    out1=np.concatenate((yes_data,no_data))
-    out2=np.concatenate((un_data,silence_data))
-    fdata=np.concatenate((out1,out2))
-    out1=np.concatenate((yes_label,no_label))
-    out2=np.concatenate((un_label,silence_label))
-    flabel=np.concatenate((out1,out2))
-    return fdata, flabel
-  elif training_step<=1340:
-    excel_file = "/kaggle/input/audiofile/yes2.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
-    yes_data = np.array(reader.iloc[:, 2:1962].values)
-    yes_label = np.full(25, 2)
-    excel_file = "/kaggle/input/audiofile/no2.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
-    no_data = np.array(reader.iloc[:, 2:1962].values)
-    no_label = np.full(25, 3)
-    excel_file = "/kaggle/input/audiofile/un3.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
-    un_data = np.array(reader.iloc[:, 2:1962].values)
-    un_label = np.full(25, 1)
-    excel_file = "/kaggle/input/audiofile/silence.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=0, nrows=25)
-    silence_data = np.array(reader.iloc[:, 2:1962].values)
-    silence_label = np.full(25, 0)
-    out1=np.concatenate((yes_data,no_data))
-    out2=np.concatenate((un_data,silence_data))
-    fdata=np.concatenate((out1,out2))
-    out1=np.concatenate((yes_label,no_label))
-    out2=np.concatenate((un_label,silence_label))
-    flabel=np.concatenate((out1,out2))
-    return fdata, flabel
-  else:
-    excel_file = "/kaggle/input/audiofile/yes3.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
-    yes_data = np.array(reader.iloc[:, 2:1962].values)
-    yes_label =  np.full(25, 2)
-    excel_file = "/kaggle/input/audiofile/no3.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
-    no_data = np.array(reader.iloc[:, 2:1962].values)
-    no_label = np.full(25, 3)
-    excel_file = "/kaggle/input/audiofile/un4.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
-    un_data = np.array(reader.iloc[:, 2:1962].values)
-    un_label = np.full(25, 1)
-    excel_file = "/kaggle/input/audiofile/silence.xlsx"
-    reader = pd.read_excel(excel_file, skiprows=0, nrows=25)
-    silence_data = np.array(reader.iloc[:, 2:1962].values)
-    silence_label =  np.full(25, 0)
-    out1=np.concatenate((yes_data,no_data))
-    out2=np.concatenate((un_data,silence_data))
-    fdata=np.concatenate((out1,out2))
-    out1=np.concatenate((yes_label,no_label))
-    out2=np.concatenate((un_label,silence_label))
-    flabel=np.concatenate((out1,out2))
-    return fdata, flabel
+  file1="/kaggle/input/audiofile/un.xlsx"
+  file2="/kaggle/input/audiofile/un1.xlsx"
+  file3="/kaggle/input/audiofile/un2.xlsx"
+  file4="/kaggle/input/audiofile/un3.xlsx"
+  data=pd.read_excel(file1)
+  df_unknown.append(data)
+  data=pd.read_excel(file2)
+  df_unknown.append(data)
+  data=pd.read_excel(file3)
+  df_unknown.append(data)
+  data=pd.read_excel(file4)
+  df_unknown.append(data)
+
+  file1="/kaggle/input/audiofile/silence.xlsx"
+  data=pd.read_excel(file1)
+  df_silence.append(data)
+  df_silence.append(data)
+  df_silence.append(data)
+  df_silence.append(data)
+  print("pulled_dataframes")
+  return df_yes,df_no,df_unknown,df_silence
+
+
+  
+
+# def return_data(training_step,start):
+#   if training_step<=140:
+#     excel_file = "C:/Users/badal/Downloads/trainndata/yes_n.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
+#     yes_data = np.array(reader.iloc[:, 2:1962].values)
+#     yes_label = np.full(25, 2)
+#     excel_file = "C:/Users/badal/Downloads/trainndata/no.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
+#     no_data = np.array(reader.iloc[:, 2:1962].values)
+#     no_label =  np.full(25, 3)
+#     excel_file = "C:/Users/badal/Downloads/trainndata/un.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
+#     un_data = np.array(reader.iloc[:, 2:1962].values)
+#     un_label =  np.full(25, 1)
+#     excel_file = "C:/Users/badal/Downloads/trainndata/silence.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=0, nrows=25)
+#     silence_data = np.array(reader.iloc[:, 2:1962].values)
+#     silence_label =  np.full(25, 0)
+#     out1=np.concatenate((yes_data,no_data))
+#     out2=np.concatenate((un_data,silence_data))
+#     fdata=np.concatenate((out1,out2))
+#     out1=np.concatenate((yes_label,no_label))
+#     out2=np.concatenate((un_label,silence_label))
+#     flabel=np.concatenate((out1,out2))
+#     return fdata, flabel
+#   elif training_step<=740:
+#     excel_file = "C:/Users/badal/Downloads/trainndata/yes1.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
+#     yes_data = np.array(reader.iloc[:, 2:1962].values)
+#     yes_label =  np.full(25, 2)
+#     excel_file = "C:/Users/badal/Downloads/trainndata/no1.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
+#     no_data = np.array(reader.iloc[:, 2:1962].values)
+#     no_label = np.full(25, 3)
+#     excel_file = "C:/Users/badal/Downloads/trainndata/un2.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
+#     un_data = np.array(reader.iloc[:, 2:1962].values)
+#     un_label =  np.full(25, 1)
+#     excel_file = "C:/Users/badal/Downloads/trainndata/silence.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=0, nrows=25)
+#     silence_data = np.array(reader.iloc[:, 2:1962].values)
+#     silence_label = np.full(25, 0)
+#     out1=np.concatenate((yes_data,no_data))
+#     out2=np.concatenate((un_data,silence_data))
+#     fdata=np.concatenate((out1,out2))
+#     out1=np.concatenate((yes_label,no_label))
+#     out2=np.concatenate((un_label,silence_label))
+#     flabel=np.concatenate((out1,out2))
+#     return fdata, flabel
+#   elif training_step<=1340:
+#     excel_file = "C:/Users/badal/Downloads/trainndata/yes2.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
+#     yes_data = np.array(reader.iloc[:, 2:1962].values)
+#     yes_label = np.full(25, 2)
+#     excel_file = "C:/Users/badal/Downloads/trainndata/no2.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
+#     no_data = np.array(reader.iloc[:, 2:1962].values)
+#     no_label = np.full(25, 3)
+#     excel_file = "C:/Users/badal/Downloads/trainndata/un3.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
+#     un_data = np.array(reader.iloc[:, 2:1962].values)
+#     un_label = np.full(25, 1)
+#     excel_file = "C:/Users/badal/Downloads/trainndata/silence.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=0, nrows=25)
+#     silence_data = np.array(reader.iloc[:, 2:1962].values)
+#     silence_label = np.full(25, 0)
+#     out1=np.concatenate((yes_data,no_data))
+#     out2=np.concatenate((un_data,silence_data))
+#     fdata=np.concatenate((out1,out2))
+#     out1=np.concatenate((yes_label,no_label))
+#     out2=np.concatenate((un_label,silence_label))
+#     flabel=np.concatenate((out1,out2))
+#     return fdata, flabel
+#   else:
+#     excel_file = "C:/Users/badal/Downloads/trainndata/yes3.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
+#     yes_data = np.array(reader.iloc[:, 2:1962].values)
+#     yes_label =  np.full(25, 2)
+#     excel_file = "C:/Users/badal/Downloads/trainndata/no3.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
+#     no_data = np.array(reader.iloc[:, 2:1962].values)
+#     no_label = np.full(25, 3)
+#     excel_file = "C:/Users/badal/Downloads/trainndata/un4.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
+#     un_data = np.array(reader.iloc[:, 2:1962].values)
+#     un_label = np.full(25, 1)
+#     excel_file = "C:/Users/badal/Downloads/trainndata/silence.xlsx"
+#     reader = pd.read_excel(excel_file, skiprows=0, nrows=25)
+#     silence_data = np.array(reader.iloc[:, 2:1962].values)
+#     silence_label =  np.full(25, 0)
+#     out1=np.concatenate((yes_data,no_data))
+#     out2=np.concatenate((un_data,silence_data))
+#     fdata=np.concatenate((out1,out2))
+#     out1=np.concatenate((yes_label,no_label))
+#     out2=np.concatenate((un_label,silence_label))
+#     flabel=np.concatenate((out1,out2))
+#     return fdata, flabel
 
     
 
@@ -319,6 +375,7 @@ def main(_):
 
   # Training loop.
   start=0
+  val=0
   training_steps_max = np.sum(training_steps_list)
   for training_step in range(start_step, training_steps_max + 1):
     # Figure out what the current learning rate is.
@@ -330,14 +387,25 @@ def main(_):
         break
     # Pull the audio samples we'll use for training.
     print("pulling data")
-    train_fingerprints,train_ground_truth=return_data(training_step,start)
-    start=start+25
-    if start==140 :
-      start=0
-    if start==740:
-      start=0
-    if start==1340:
-      start=0
+    if start==0:
+      df_yes,df_no,df_unknown,df_silence=load_data()
+    
+
+    values_df1 = df_yes.iloc[val:val+25].values.flatten()
+    values_df2 = df_no.iloc[val:val+25].values.flatten()
+    values_df3 = df_unknown.iloc[val:val+25].values.flatten()
+    values_df4 = df_silence.iloc[val:val+25].values.flatten()
+    val=val+25
+    #train_fingerprints,train_ground_truth=return_data(training_step,start)
+    train_fingerprints = np.concatenate((values_df1, values_df2, values_df3, values_df4))
+    yes_label = np.full(25, 2)
+    no_label=np.full(25,3)
+    unknown_label=np.full(25,1)
+    silence_label=np.full(25,0)
+    train_ground_truth=((yes_label,no_label,unknown_label,silence_label))
+    print("pulled the data "+start)
+    
+
 
     # Run the graph with this batch of training data.
     train_summary, train_accuracy, cross_entropy_value, _, _ = sess.run(
