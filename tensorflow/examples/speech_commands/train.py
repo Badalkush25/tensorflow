@@ -80,19 +80,19 @@ FLAGS = None
 
 def return_data(training_step,start):
   if training_step<=140:
-    excel_file = "C:/Users/badal/Downloads/trainndata/yes_n.xlsx"
+    excel_file = "/kaggle/input/audiofile/yes_n.xlsx"
     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
     yes_data = np.array(reader.iloc[:, 2:1962].values)
     yes_label = np.full(25, 2)
-    excel_file = "C:/Users/badal/Downloads/trainndata/no.xlsx"
+    excel_file = "/kaggle/input/audiofile/no.xlsx"
     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
     no_data = np.array(reader.iloc[:, 2:1962].values)
     no_label =  np.full(25, 3)
-    excel_file = "C:/Users/badal/Downloads/trainndata/un.xlsx"
+    excel_file = "/kaggle/input/audiofile/un.xlsx"
     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
     un_data = np.array(reader.iloc[:, 2:1962].values)
     un_label =  np.full(25, 1)
-    excel_file = "C:/Users/badal/Downloads/trainndata/silence.xlsx"
+    excel_file = "/kaggle/input/audiofile/silence.xlsx"
     reader = pd.read_excel(excel_file, skiprows=0, nrows=25)
     silence_data = np.array(reader.iloc[:, 2:1962].values)
     silence_label =  np.full(25, 0)
@@ -104,19 +104,19 @@ def return_data(training_step,start):
     flabel=np.concatenate((out1,out2))
     return fdata, flabel
   elif training_step<=740:
-    excel_file = "C:/Users/badal/Downloads/trainndata/yes1.xlsx"
+    excel_file = "/kaggle/input/audiofile/yes1.xlsx"
     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
     yes_data = np.array(reader.iloc[:, 2:1962].values)
     yes_label =  np.full(25, 2)
-    excel_file = "C:/Users/badal/Downloads/trainndata/no1.xlsx"
+    excel_file = "/kaggle/input/audiofile/no1.xlsx"
     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
     no_data = np.array(reader.iloc[:, 2:1962].values)
     no_label = np.full(25, 3)
-    excel_file = "C:/Users/badal/Downloads/trainndata/un2.xlsx"
+    excel_file = "/kaggle/input/audiofile/un2.xlsx"
     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
     un_data = np.array(reader.iloc[:, 2:1962].values)
     un_label =  np.full(25, 1)
-    excel_file = "C:/Users/badal/Downloads/trainndata/silence.xlsx"
+    excel_file = "/kaggle/input/audiofile/silence.xlsx"
     reader = pd.read_excel(excel_file, skiprows=0, nrows=25)
     silence_data = np.array(reader.iloc[:, 2:1962].values)
     silence_label = np.full(25, 0)
@@ -128,19 +128,19 @@ def return_data(training_step,start):
     flabel=np.concatenate((out1,out2))
     return fdata, flabel
   elif training_step<=1340:
-    excel_file = "C:/Users/badal/Downloads/trainndata/yes2.xlsx"
+    excel_file = "/kaggle/input/audiofile/yes2.xlsx"
     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
     yes_data = np.array(reader.iloc[:, 2:1962].values)
     yes_label = np.full(25, 2)
-    excel_file = "C:/Users/badal/Downloads/trainndata/no2.xlsx"
+    excel_file = "/kaggle/input/audiofile/no2.xlsx"
     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
     no_data = np.array(reader.iloc[:, 2:1962].values)
     no_label = np.full(25, 3)
-    excel_file = "C:/Users/badal/Downloads/trainndata/un3.xlsx"
+    excel_file = "/kaggle/input/audiofile/un3.xlsx"
     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
     un_data = np.array(reader.iloc[:, 2:1962].values)
     un_label = np.full(25, 1)
-    excel_file = "C:/Users/badal/Downloads/trainndata/silence.xlsx"
+    excel_file = "/kaggle/input/audiofile/silence.xlsx"
     reader = pd.read_excel(excel_file, skiprows=0, nrows=25)
     silence_data = np.array(reader.iloc[:, 2:1962].values)
     silence_label = np.full(25, 0)
@@ -152,19 +152,19 @@ def return_data(training_step,start):
     flabel=np.concatenate((out1,out2))
     return fdata, flabel
   else:
-    excel_file = "C:/Users/badal/Downloads/trainndata/yes3.xlsx"
+    excel_file = "/kaggle/input/audiofile/yes3.xlsx"
     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
     yes_data = np.array(reader.iloc[:, 2:1962].values)
     yes_label =  np.full(25, 2)
-    excel_file = "C:/Users/badal/Downloads/trainndata/no3.xlsx"
+    excel_file = "/kaggle/input/audiofile/no3.xlsx"
     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
     no_data = np.array(reader.iloc[:, 2:1962].values)
     no_label = np.full(25, 3)
-    excel_file = "C:/Users/badal/Downloads/trainndata/un4.xlsx"
+    excel_file = "/kaggle/input/audiofile/un4.xlsx"
     reader = pd.read_excel(excel_file, skiprows=start, nrows=25)
     un_data = np.array(reader.iloc[:, 2:1962].values)
     un_label = np.full(25, 1)
-    excel_file = "C:/Users/badal/Downloads/trainndata/silence.xlsx"
+    excel_file = "/kaggle/input/audiofile/silence.xlsx"
     reader = pd.read_excel(excel_file, skiprows=0, nrows=25)
     silence_data = np.array(reader.iloc[:, 2:1962].values)
     silence_label =  np.full(25, 0)
