@@ -379,6 +379,8 @@ def main(_):
   # Training loop.
   start=0
   val=0
+  print("pulling data")
+  df_yes,df_no,df_unknown,df_silence=load_data()
   training_steps_max = np.sum(training_steps_list)
   for training_step in range(start_step, training_steps_max + 1):
     # Figure out what the current learning rate is.
@@ -389,10 +391,7 @@ def main(_):
         learning_rate_value = learning_rates_list[i]
         break
     # Pull the audio samples we'll use for training.
-    print("pulling data")
-    if start==0:
-      df_yes,df_no,df_unknown,df_silence=load_data()
-      start=start+1
+    
     
 
     values_df1 = df_yes.iloc[val:val+25].values.flatten()
