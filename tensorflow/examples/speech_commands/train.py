@@ -394,10 +394,10 @@ def main(_):
     
     
 
-    values_df1 = df_yes.iloc[val:val+25].values.flatten()
-    values_df2 = df_no.iloc[val:val+25].values.flatten()
-    values_df3 = df_unknown.iloc[val:val+25].values.flatten()
-    values_df4 = df_silence.iloc[val:val+25].values.flatten()
+    values_df1 = df_yes.iloc[val:val+25,2:].values.flatten()
+    values_df2 = df_no.iloc[val:val+25,2:].values.flatten()
+    values_df3 = df_unknown.iloc[val:val+25,2:].values.flatten()
+    values_df4 = df_silence.iloc[val:val+25,2:].values.flatten()
     val=val+25
     #train_fingerprints,train_ground_truth=return_data(training_step,start)
     train_fingerprints = np.concatenate((values_df1, values_df2, values_df3, values_df4))
