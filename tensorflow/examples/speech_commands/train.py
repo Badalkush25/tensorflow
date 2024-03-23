@@ -406,7 +406,7 @@ def main(_):
     unknown_label=np.full(25,1)
     silence_label=np.full(25,0)
     train_ground_truth=((yes_label,no_label,unknown_label,silence_label))
-    print("pulled the data "+start_step)
+    print("pulled the data "+str(start_step))
     
 
 
