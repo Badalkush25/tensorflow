@@ -392,6 +392,7 @@ def main(_):
     print("pulling data")
     if start==0:
       df_yes,df_no,df_unknown,df_silence=load_data()
+      start=start+1
     
 
     values_df1 = df_yes.iloc[val:val+25].values.flatten()
@@ -406,7 +407,7 @@ def main(_):
     unknown_label=np.full(25,1)
     silence_label=np.full(25,0)
     train_ground_truth=((yes_label,no_label,unknown_label,silence_label))
-    print("pulled the data "+start)
+    print("pulled the data "+start_step)
     
 
 
