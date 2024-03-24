@@ -398,6 +398,10 @@ def main(_):
     values_df2 = np.array(df_no.iloc[val:val+25,2:1962].values)
     values_df3 = np.array(df_unknown.iloc[val:val+25,2:1962].values)
     values_df4 = np.array(df_silence.iloc[val:val+25,2:1962].values)
+    value_df1=value_df1.astype(np.float)
+    value_df2=value_df2.astype(np.float)
+    value_df3=value_df3.astype(np.float)
+    value_df3=value_df4.astype(np.float)
     val=val+25
     #train_fingerprints,train_ground_truth=return_data(training_step,start)
     train_fingerprints = np.concatenate((values_df1, values_df2, values_df3, values_df4))
@@ -406,7 +410,7 @@ def main(_):
     unknown_label=np.full(25,1)
     silence_label=np.full(25,0)
     train_ground_truth=np.concatenate((yes_label,no_label,unknown_label,silence_label))
-    print("pulled the data "+str(start_step))
+    print("pulled the data "+str(training_step))
     
 
 
