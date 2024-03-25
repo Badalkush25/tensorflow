@@ -398,6 +398,11 @@ def main(_):
     values_df2 = np.array(df_no.iloc[val:val+25,2:1962].values)
     values_df3 = np.array(df_unknown.iloc[val:val+25,2:1962].values)
     values_df4 = np.array(df_silence.iloc[val:val+25,2:1962].values)
+    print(values_df1)
+    print(values_df2)
+    print(values_df2)
+    print(values_df2)
+    
     values_df1=values_df1.astype(float)
     values_df2=values_df2.astype(float)
     values_df3=values_df3.astype(float)
