@@ -410,10 +410,16 @@ def main(_):
     values_df2 = np.array(df_no.iloc[val:val+25,:1960].values)
     values_df3 = np.array(df_unknown.iloc[val:val+25,:1960].values)
     values_df4 = np.array(df_silence.iloc[0:25,:1960].values)
-    print(values_df1)
-    print(values_df2)
-    print(values_df2)
-    print(values_df2)
+
+    if np.issubdtype(values_df1.dtype, np.str_):
+      continue
+    if np.issubdtype(values_df2.dtype, np.str_):
+      continue
+    if np.issubdtype(values_df3.dtype, np.str_):
+      continue
+    if np.issubdtype(values_df4.dtype, np.str_):
+      continue
+    
     
     # values_df1=values_df1.astype(float)
     # values_df2=values_df2.astype(float)
