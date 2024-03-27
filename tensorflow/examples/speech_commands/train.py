@@ -394,10 +394,10 @@ def main(_):
     
     
 
-    values_df1 = np.array(df_yes.iloc[val:val+25,2:1962].values)
-    values_df2 = np.array(df_no.iloc[val:val+25,2:1962].values)
-    values_df3 = np.array(df_unknown.iloc[val:val+25,2:1962].values)
-    values_df4 = np.array(df_silence.iloc[val:val+25,2:1962].values)
+    values_df1 = np.array(df_yes.iloc[val:val+25,:1960].values)
+    values_df2 = np.array(df_no.iloc[val:val+25,:1960].values)
+    values_df3 = np.array(df_unknown.iloc[val:val+25,:1960].values)
+    values_df4 = np.array(df_silence.iloc[val:val+25,:1960].values)
     print(values_df1)
     print(values_df2)
     print(values_df2)
