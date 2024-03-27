@@ -82,51 +82,63 @@ def load_data():
   df_no=pd.DataFrame()
   df_unknown=pd.DataFrame()
   df_silence=pd.DataFrame()
-  file1="/kaggle/input/audiofile/yes_n.xlsx"
-  file2="/kaggle/input/audiofile/yes1.xlsx"
-  file3="/kaggle/input/audiofile/yes2.xlsx"
-  file4="/kaggle/input/audiofile/yes3.xlsx"
+  file1="/kaggle/input/audiofilen/yes_n.xlsx"
+  file2="/kaggle/input/audiofilen/yes1.xlsx"
+  file3="/kaggle/input/audiofilen/yes2.xlsx"
+  file4="/kaggle/input/audiofilen/yes3.xlsx"
   data=pd.read_excel(file1)
   df_yes=df_yes._append(data)
   data=pd.read_excel(file2)
+  data = data.drop(data.index[0])
   df_yes=df_yes._append(data)
   data=pd.read_excel(file3)
+  data = data.drop(data.index[0])
   df_yes=df_yes._append(data)
   data=pd.read_excel(file4)
+  data = data.drop(data.index[0])
   df_yes=df_yes._append(data)
   
   
-  file1="/kaggle/input/audiofile/no.xlsx"
-  file2="/kaggle/input/audiofile/no1.xlsx"
-  file3="/kaggle/input/audiofile/no2.xlsx"
-  file4="/kaggle/input/audiofile/no3.xlsx"
+  file1="/kaggle/input/audiofilen/no.xlsx"
+  file2="/kaggle/input/audiofilen/no1.xlsx"
+  file3="/kaggle/input/audiofilen/no2.xlsx"
+  file4="/kaggle/input/audiofilen/no3.xlsx"
   data=pd.read_excel(file1)
   df_no=df_no._append(data)
   data=pd.read_excel(file2)
+  data = data.drop(data.index[0])
   df_no=df_no._append(data)
   data=pd.read_excel(file3)
+  data = data.drop(data.index[0])
   df_no=df_no._append(data)
   data=pd.read_excel(file4)
+  data = data.drop(data.index[0])
   df_no=df_no._append(data)
+  
 
-  file1="/kaggle/input/audiofile/un.xlsx"
-  file2="/kaggle/input/audiofile/un1.xlsx"
-  file3="/kaggle/input/audiofile/un2.xlsx"
-  file4="/kaggle/input/audiofile/un3.xlsx"
-  file5="/kaggle/input/audiofile/un4.xlsx"
+  file1="/kaggle/input/audiofilen/un.xlsx"
+  file2="/kaggle/input/audiofilen/un1.xlsx"
+  file3="/kaggle/input/audiofilen/un2.xlsx"
+  file4="/kaggle/input/audiofilen/un3.xlsx"
+  file5="/kaggle/input/audiofilen/un4.xlsx"
   data=pd.read_excel(file1)
   df_unknown=df_unknown._append(data)
   data=pd.read_excel(file2)
+  data = data.drop(data.index[0])
   df_unknown=df_unknown._append(data)
   data=pd.read_excel(file3)
+  data = data.drop(data.index[0])
   df_unknown=df_unknown._append(data)
   data=pd.read_excel(file4)
+  data = data.drop(data.index[0])
   df_unknown=df_unknown._append(data)
   data=pd.read_excel(file5)
+  data = data.drop(data.index[0])
   df_unknown=df_unknown._append(data)
 
-  file1="/kaggle/input/audiofile/silence.xlsx"
+  file1="/kaggle/input/audiofilen/silence.xlsx"
   data=pd.read_excel(file1)
+  data = data.drop(data.index[0])
   df_silence=df_silence._append(data)
   df_silence=df_silence._append(data)
   df_silence=df_silence._append(data)
@@ -397,16 +409,16 @@ def main(_):
     values_df1 = np.array(df_yes.iloc[val:val+25,:1960].values)
     values_df2 = np.array(df_no.iloc[val:val+25,:1960].values)
     values_df3 = np.array(df_unknown.iloc[val:val+25,:1960].values)
-    values_df4 = np.array(df_silence.iloc[val:val+25,:1960].values)
+    values_df4 = np.array(df_silence.iloc[0:25,:1960].values)
     print(values_df1)
     print(values_df2)
     print(values_df2)
     print(values_df2)
     
-    values_df1=values_df1.astype(float)
-    values_df2=values_df2.astype(float)
-    values_df3=values_df3.astype(float)
-    values_df3=values_df4.astype(float)
+    # values_df1=values_df1.astype(float)
+    # values_df2=values_df2.astype(float)
+    # values_df3=values_df3.astype(float)
+    # values_df3=values_df4.astype(float)
     val=val+25
     #train_fingerprints,train_ground_truth=return_data(training_step,start)
     train_fingerprints = np.concatenate((values_df1, values_df2, values_df3, values_df4))
