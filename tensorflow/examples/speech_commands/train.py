@@ -87,6 +87,7 @@ def load_data():
   file3="/kaggle/input/audiofilen/yes2.xlsx"
   file4="/kaggle/input/audiofilen/yes3.xlsx"
   data=pd.read_excel(file1)
+  data = data.drop(data.index[0])
   df_yes=df_yes._append(data)
   data=pd.read_excel(file2)
   data = data.drop(data.index[0])
@@ -104,6 +105,7 @@ def load_data():
   file3="/kaggle/input/audiofilen/no2.xlsx"
   file4="/kaggle/input/audiofilen/no3.xlsx"
   data=pd.read_excel(file1)
+  data = data.drop(data.index[0])
   df_no=df_no._append(data)
   data=pd.read_excel(file2)
   data = data.drop(data.index[0])
@@ -411,13 +413,15 @@ def main(_):
     values_df3 = np.array(df_unknown.iloc[val:val+25,:1960].values)
     values_df4 = np.array(df_silence.iloc[0:25,:1960].values)
 
-    if np.issubdtype(values_df1.dtype, np.str_):
+    if np.issubdtype(values_df1.dtype, np.str_) or  np.issubdtype(values_df1.dtype, np.unicode_):
       continue
-    if np.issubdtype(values_df2.dtype, np.str_):
+    if np.issubdtype(values_df2.dtype, np.str_) or np.issubdtype(values_df2.dtype, np.unicode_):
       continue
-    if np.issubdtype(values_df3.dtype, np.str_):
+    if np.issubdtype(values_df3.dtype, np.str_) or np.issubdtype(values_df3.dtype, np.unicode_):
       continue
-    if np.issubdtype(values_df4.dtype, np.str_):
+    if np.issubdtype(values_df4.dtype, np.str_) or np.issubdtype(values_df4.dtype, np.unicode_):
+      continue
+    if training_step==149:
       continue
     
     
