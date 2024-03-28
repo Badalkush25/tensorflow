@@ -412,7 +412,7 @@ def main(_):
     values_df2 = np.array(df_no.iloc[val:val+25,:1960].values)
     values_df3 = np.array(df_unknown.iloc[val:val+25,:1960].values)
     values_df4 = np.array(df_silence.iloc[0:25,:1960].values)
-
+    val=val+25
     if np.issubdtype(values_df1.dtype, np.str_) or  np.issubdtype(values_df1.dtype, np.unicode_):
       continue
     if np.issubdtype(values_df2.dtype, np.str_) or np.issubdtype(values_df2.dtype, np.unicode_):
@@ -429,7 +429,7 @@ def main(_):
     # values_df2=values_df2.astype(float)
     # values_df3=values_df3.astype(float)
     # values_df3=values_df4.astype(float)
-    val=val+25
+   
     #train_fingerprints,train_ground_truth=return_data(training_step,start)
     train_fingerprints = np.concatenate((values_df1, values_df2, values_df3, values_df4))
     yes_label = np.full(25, 2)
