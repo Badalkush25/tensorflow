@@ -82,10 +82,10 @@ def load_data():
   df_no=pd.DataFrame()
   df_unknown=pd.DataFrame()
   df_silence=pd.DataFrame()
-  file1="/kaggle/input/audiofilen/yes_n.xlsx"
-  file2="/kaggle/input/audiofilen/yes1.xlsx"
-  file3="/kaggle/input/audiofilen/yes2.xlsx"
-  file4="/kaggle/input/audiofilen/yes3.xlsx"
+  file1="/kaggle/input/audiofilenn/yes_n.xlsx"
+  file2="/kaggle/input/audiofilenn/yes1.xlsx"
+  file3="/kaggle/input/audiofilenn/yes2.xlsx"
+  file4="/kaggle/input/audiofilenn/yes3.xlsx"
   data=pd.read_excel(file1)
   data = data.drop(data.index[0])
   df_yes=df_yes._append(data)
@@ -100,10 +100,10 @@ def load_data():
   df_yes=df_yes._append(data)
   
   
-  file1="/kaggle/input/audiofilen/no.xlsx"
-  file2="/kaggle/input/audiofilen/no1.xlsx"
-  file3="/kaggle/input/audiofilen/no2.xlsx"
-  file4="/kaggle/input/audiofilen/no3.xlsx"
+  file1="/kaggle/input/audiofilenn/no.xlsx"
+  file2="/kaggle/input/audiofilenn/no1.xlsx"
+  file3="/kaggle/input/audiofilenn/no2.xlsx"
+  file4="/kaggle/input/audiofilenn/no3.xlsx"
   data=pd.read_excel(file1)
   data = data.drop(data.index[0])
   df_no=df_no._append(data)
@@ -118,11 +118,11 @@ def load_data():
   df_no=df_no._append(data)
   
 
-  file1="/kaggle/input/audiofilen/un.xlsx"
-  file2="/kaggle/input/audiofilen/un1.xlsx"
-  file3="/kaggle/input/audiofilen/un2.xlsx"
-  file4="/kaggle/input/audiofilen/un3.xlsx"
-  file5="/kaggle/input/audiofilen/un4.xlsx"
+  file1="/kaggle/input/audiofilenn/un.xlsx"
+  file2="/kaggle/input/audiofilenn/un1.xlsx"
+  file3="/kaggle/input/audiofilenn/un2.xlsx"
+  file4="/kaggle/input/audiofilenn/un3.xlsx"
+  file5="/kaggle/input/audiofilenn/un4.xlsx"
   data=pd.read_excel(file1)
   df_unknown=df_unknown._append(data)
   data=pd.read_excel(file2)
@@ -138,7 +138,7 @@ def load_data():
   data = data.drop(data.index[0])
   df_unknown=df_unknown._append(data)
 
-  file1="/kaggle/input/audiofilen/silence.xlsx"
+  file1="/kaggle/input/audiofilenn/silence.xlsx"
   data=pd.read_excel(file1)
   data = data.drop(data.index[0])
   df_silence=df_silence._append(data)
@@ -413,22 +413,22 @@ def main(_):
     values_df3 = np.array(df_unknown.iloc[val:val+25,:1960].values)
     values_df4 = np.array(df_silence.iloc[0:25,:1960].values)
     val=val+25
-    if np.issubdtype(values_df1.dtype, np.str_) or  np.issubdtype(values_df1.dtype, np.unicode_):
-      continue
-    if np.issubdtype(values_df2.dtype, np.str_) or np.issubdtype(values_df2.dtype, np.unicode_):
-      continue
-    if np.issubdtype(values_df3.dtype, np.str_) or np.issubdtype(values_df3.dtype, np.unicode_):
-      continue
-    if np.issubdtype(values_df4.dtype, np.str_) or np.issubdtype(values_df4.dtype, np.unicode_):
-      continue
-    if training_step==149:
-      continue
+    # if np.issubdtype(values_df1.dtype, np.str_) or  np.issubdtype(values_df1.dtype, np.unicode_):
+    #   continue
+    # if np.issubdtype(values_df2.dtype, np.str_) or np.issubdtype(values_df2.dtype, np.unicode_):
+    #   continue
+    # if np.issubdtype(values_df3.dtype, np.str_) or np.issubdtype(values_df3.dtype, np.unicode_):
+    #   continue
+    # if np.issubdtype(values_df4.dtype, np.str_) or np.issubdtype(values_df4.dtype, np.unicode_):
+    #   continue
+    # if training_step==149:
+    #   continue
     
     
-    # values_df1=values_df1.astype(float)
-    # values_df2=values_df2.astype(float)
-    # values_df3=values_df3.astype(float)
-    # values_df3=values_df4.astype(float)
+    values_df1=values_df1.astype(float)
+    values_df2=values_df2.astype(float)
+    values_df3=values_df3.astype(float)
+    values_df3=values_df4.astype(float)
    
     #train_fingerprints,train_ground_truth=return_data(training_step,start)
     train_fingerprints = np.concatenate((values_df1, values_df2, values_df3, values_df4))
